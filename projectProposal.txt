@@ -1,0 +1,62 @@
+Class Project : Group Name
+Group Members: 
+Student ID	Student Name
+c0788279	Amrit Singh Sohi
+c0784856	Satinder Singh
+
+Description of the Project You are working on:
+We are working on a Library Book Management System website for a college or a school. The functionalities of the project can be divided into two parts, admin/librarian functionalities and student functionalities.
+Admin/Librarian functionalities:
+•	View all the books or a single book.
+•	View all the users or a single user.
+•	Remove or add user.
+•	Issue book.
+•	Submit book.
+•	Change user password.
+•	Add or remove a book.
+Student functionalities: 
+•	View all books or a single book.
+•	Request to issue a book.
+•	View profile.
+Note: upon viewing a book, it will also show if book is available and if not, then who has rented it (for admin only) and when is the return date. And a student’s profile will show all the books she/he has currently rented.
+Tell me about your mongodb Database: 
+Our MongoDb database for the book management system will consists of 2 collections, one for the users and other for the books. The user’s collection will have data for students as well as the librarian/admin. While the book’s collection will have data about the book, like author, description, etc.
+How many collections you have? 
+We have 2 collections, which are for users’ information and books’ information. 
+
+What will be the name of the collections?
+Users and Books.
+What kind of data will be in the collections?
+Collection Name	Description of the collection	Key Value Paris	Who will work on it?
+Users:	 This will contain all the data about user(s), including librarian and students.	
+        Id : number, name : string, isAdmin : Boolean, booksIssued : array of book id (number).
+        	
+Books	This will contain all the data about the book(s)
+    	Id : number, name : string, author : string,  publishedOn : date, publisher : string,
+        description : string, issuedBy : array of user id( where size of array is equal to total number of
+         that specific book in library and if that book is not issued then it will be -1), 
+         returnBy : array as the same size of issuedBy and if book is not issued then it will be null.
+         
+
+
+github--------------------------------------------------------------------
+
+
+    cmds
+        or create a new repository on the command line
+        echo "# Library_Management_System" >> README.md
+        git init
+        git add README.md
+        git commit -m "first commit"
+        git branch -M main
+        git remote add origin https://github.com/1amrit1/Library_Management_System.git
+        git push -u origin main
+        …or push an existing repository from the command line
+        git remote add origin https://github.com/1amrit1/Library_Management_System.git
+        git branch -M main
+        git push -u origin main
+        …or import code from another repository
+        You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+
+
+         	

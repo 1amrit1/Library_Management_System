@@ -89,7 +89,7 @@ input {
 .login-box form a {
   position: relative;
   display: inline-block;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -176,7 +176,7 @@ input {
   bottom: 0;
   right: -100%;
   width: 100%;
-  height: 2px;
+  height: 1px;
   background: linear-gradient(270deg, transparent, #03e9f4);
   animation: btnAnimC 1500ms linear infinite;
   animation-delay: 600ms;
@@ -201,3 +201,25 @@ input {
   animation-delay: 900ms;
 } 
 
+#inputSubmit{
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  padding: 10px 20px;
+}
+
+#inputSubmit:hover{
+  color: black;
+}
+#ancForgotPass{
+  position: fixed;
+  right: 0%;
+  bottom: 0vh;
+  color: red;
+  text-decoration: none;
+}
+#ancForgotPass:hover{
+  background-color: white;
+  
+  color: black;
+}

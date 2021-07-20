@@ -23,18 +23,21 @@
 
     <div
         class="login-box">
+
         <h2>Login
         </h2>
         <form
-            action=""
-            class="form">
+            method="POST"
+            action="/home"
+            class="form" id="">
             <div
                 class="user-box">
                 <input
                     class="input"
                     type="text"
                     id=""
-                    required="">
+                    required=""
+                    name="userName">
                 <label
                     class="label"
                     for="">Username</label>
@@ -46,25 +49,37 @@
                     class="input"
                     type="password"
                     id=""
-                    required="">
+                    required=""
+                    name="password">
                 <label
                     class="label"
                     for="">Password</label>
             </div>
             <!-- /.user-box -->
             <a
-                href="#">
+                href="javascript:void(0)">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                Submit
+                <input
+                    id="inputSubmit"
+                    type="submit"
+                    value="Submit">
+                <!-- Submit -->
             </a>
         </form>
         <!-- /form -->
+        <a id="ancForgotPass"
+            href="">Reset
+            Password</a>
+
     </div>
     <!-- /.login-box -->
 
 </body>
+<script>
+
+</script>
 
 </html>

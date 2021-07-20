@@ -12,7 +12,7 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 
 //for css
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 var a = ['/', '/login'];
 app.get(a, function (req, res) {

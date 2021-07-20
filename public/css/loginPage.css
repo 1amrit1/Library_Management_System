@@ -18,6 +18,10 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+#errorH2{
+  color: red;
+
+}
 
 input {
   outline: none;

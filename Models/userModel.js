@@ -45,12 +45,12 @@ var get_1_user = async function (id) {
 }
 
 
-var insert_1_user = async function (id, name, isAdmin, booksIssued) {
+var insert_1_user = async function (id, name, isAdmin, booksIssued, password) {
     var isDuplicateId = await get_1_user(id);
     if (isDuplicateId) {
 
     } else {
-        var userObj = { "id": id, "name": name, "isAdmin": isAdmin, "booksIssued": booksIssued };
+        var userObj = { "id": id, "name": name, "isAdmin": isAdmin, "booksIssued": booksIssued, "password":password };
 
         mongoClient.connect(url, async function (err, dbServer) {
             if (err) throw err;

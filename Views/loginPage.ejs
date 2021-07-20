@@ -26,10 +26,24 @@
 
         <h2>Login
         </h2>
+        <h3
+            id="errorH2">
+            <% if(locals.error)
+                { %>
+                <div class="alert alert-danger"
+                    role="alert">
+                    <%= error
+                        %>
+                </div>
+                <% }
+                    %>
+
+        </h3>
         <form
             method="POST"
             action="/home"
-            class="form" id="">
+            class="form"
+            id="">
             <div
                 class="user-box">
                 <input

@@ -1,6 +1,7 @@
 //immporting modules
 const express = require('express');
-var loginController = require('./Controllers/loginController');
+var path = require('path');
+var homeController = require('./Controllers/homeController');
 
 //creating server
 const app = express();
@@ -9,8 +10,8 @@ app.listen(3000, function () {
 })
 
 //for html
-app.set('views', __dirname + '/views');
-app.engine('html', require('ejs').renderFile);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs')
 
 //for css
 app.use(express.static(__dirname + '/public'));
@@ -24,28 +25,9 @@ app.use(express.json());
 //login page
 var a = ['/', '/login'];
 app.get(a, function (req, res) {
-    res.render('loginPage.html');
+    res.render('loginPage');
 });
 
 //for home page(a post method)
 // Access the parse results as request.body
-app.post('/home', function (req, res) {
-    var userName = req.body.userName;
-    var password = req.body.password;
-    console.log(userName);
-    console.log(password);
-
-    var isUserValid = loginController.userAuthFn(userName, password);
-    if (isUserValid) {
-        res.render('homePage.html');
-    } else {
-        res.redirect(url.format({
-            pathname: "/",
-            query: {
-                "error":true 
-            }
-        }));
-        // return res.status(401).end('<h1></h1>');
-    }
-    res.end;
-});
+app.post('/home', homeController.login);

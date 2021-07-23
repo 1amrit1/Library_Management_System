@@ -26,8 +26,8 @@ module.exports.getAllUsers = async function () {
         await client.close();
     }
 
+    return res;
 }
-return res;
 
 //read one
 module.exports.get_1_user = async function (id) {
@@ -83,6 +83,55 @@ module.exports.insert_1_user = async function (id, name, isAdmin, booksIssued, p
 
 //update one
 
-var update_1_user = async function (id, updObj) {
 
+
+module.exports.updatePassword = async function (id, newPassword) {
+    bcrypt.hash(newPassword, saltRounds, async function (err, passwordHash) {
+        const filter = { "id": id };
+
+        const updateDocument = {
+            $set: { "password": passwordHash }
+        };
+
+        await client.connect();
+        res = await client.db(db_name).collection("users").updateOne(filter, updateDocument);;
+        console.log(res);
+        client.close();
+    });
 }
+module.exports.updateBooksIssued = async function (id, bookId, isIssueing) {
+    // in books model also updatation will be done by the controller, which calls this fn
+    var res;
+    try {
+        await client.connect();
+        var user = await client.db(db_name).collection("users").findOne({ "id": id });
+        if (user) {
+            var booksIssuedArr = user["booksIssued"];
+            if (isIssueing) {
+                //if isIssueing true then person is issueing the book
+                booksIssuedArr.push(bookId);
+            } else {
+                //else the person is returning the book
+                const index = booksIssuedArr.indexOf(bookId);
+                if (index > -1) {
+                    booksIssuedArr.splice(index, 1);
+                }
+
+            }
+            const filter = { "id": id };
+            const updateDocument = {
+                $set: { "booksIssued": booksIssuedArr }
+            };
+            res = await client.db(db_name).collection("users").updateOne(filter, updateDocument);;
+            console.log(res);
+        } else {
+            console.log("wrong id");
+        }
+    } catch {
+
+    } finally {
+        await client.close();
+    }
+    return res;
+};
+

@@ -1,7 +1,7 @@
 //immporting modules
 const express = require('express');
 var path = require('path');
-var homeController = require('./Controllers/homeController');
+var authController = require('./Controllers/authController');
 
 //creating server
 const app = express();
@@ -24,10 +24,11 @@ app.use(express.json());
 
 //login page
 var a = ['/', '/login'];
-app.get(a, function (req, res) {
-    res.render('loginPage');
-});
+app.get(a, authController.renderLoginPage);
 
 //for home page(a post method)
 // Access the parse results as request.body
-app.post('/home', homeController.login);
+app.post('/loginCheck', authController.login);
+
+
+//home page will be called dashboard...... so /dashboard will be the url

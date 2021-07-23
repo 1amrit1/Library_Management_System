@@ -1,11 +1,14 @@
-
-
 module.exports.login = function (req, res) {
     var userName = req.body.userName;
     var password = req.body.password;
     console.log(userName);
     console.log(password);
 
+    // // Load hash from your password DB.
+    // bcrypt.compare(userGivenPassword, hash, function (err, result) {
+    //     // result == true
+    // });
+ 
     if (userName == "check@email.com" && password == "checkPassword") {
         res.render('homePage');
     } else {
@@ -16,4 +19,8 @@ module.exports.login = function (req, res) {
 
         res.end;
     }
+}
+
+module.exports.renderLoginPage = function (req, res) {
+    res.render('loginPage');
 }

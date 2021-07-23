@@ -135,3 +135,22 @@ module.exports.updateBooksIssued = async function (id, bookId, isIssueing) {
     return res;
 };
 
+model.exports.deleteUser = async function (id) {
+    var res;
+    try {
+
+        await client.connect();
+        res = await client.db(db_name).collection("users").deleteOne({ "id": id });
+        if (res) {
+            console.log(res);
+        } else {
+            console.log("no data");
+        }
+    } catch {
+
+    } finally {
+        await client.close();
+    }
+
+    return res;
+}

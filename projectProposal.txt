@@ -33,7 +33,7 @@ Users:	 This will contain all the data about user(s), including librarian and st
         	
 Books	This will contain all the data about the book(s)
     	Id : number, name : string, author : string,  publishedOn : date, publisher : string,
-        description : string, issuedBy : array of user id( where size of array is equal to total number of
+        description : string, issuedTo : array of user id( where size of array is equal to total number of
          that specific book in library and if that book is not issued then it will be -1), 
          returnBy : array as the same size of issuedBy and if book is not issued then it will be null.
          

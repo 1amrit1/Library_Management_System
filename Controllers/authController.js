@@ -8,7 +8,8 @@ module.exports.login = function (req, res) {
     // bcrypt.compare(userGivenPassword, hash, function (err, result) {
     //     // result == true
     // });
- 
+
+
     if (userName == "check@email.com" && password == "checkPassword") {
         res.render('homePage');
     } else {

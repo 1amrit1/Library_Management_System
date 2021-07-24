@@ -5,7 +5,6 @@ const client = new MongoClient(url);
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const someOtherPlaintextPassword = 'not_bacon';
 
 
 //read all

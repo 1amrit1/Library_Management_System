@@ -35,22 +35,33 @@ var insert_1_book = async function (id, name, author, publisher, description, is
     //      that specific book in library and if that book is not issued then it will be - 1),
     // returnBy: array as the same size of issuedBy and if book is not issued then it will be null.
 
-
     var res;
     var isDuplicateId = await get_1_book(id);
     if (isDuplicateId) {
-        //add in the array.....
+        //add in both the arrays in db
 
-    } else {
-        var bookObj = { "id": id, "name": name, "author": author, "publisher": publisher, "description": description, "issuedTo": issuedTo, "returnBy": returnBy };
-
-
+        //get arrays to update
+        var bookIssuedToArr = isDuplicateId.issuedTo;
+        var bookReturnByArr = isDuplicateId.returnBy;
+        //add elements to the arrays
+        bookIssuedToArr.push(-1);
+        bookReturnByArr.push(null);
+        //create the object
+        var bookUptObj = { $set: { "issuedTo": bookIssuedToArr, "returnBy": bookReturnByArr } };
+        //get the book id
+        filter = { "id": isDuplicateId.id };
+        //call the updation function
         await client.connect();
-
-        res = await client.db(db_name).collection("books").insertOne(bookObj);
+        res = await client.db(db_name).collection("books").updateOne(filter, bookUptObj);;
         console.log(res);
         client.close();
 
+    } else {
+        var bookObj = { "id": id, "name": name, "author": author, "publisher": publisher, "description": description, "issuedTo": issuedTo, "returnBy": returnBy };
+        await client.connect();
+        res = await client.db(db_name).collection("books").insertOne(bookObj);
+        console.log(res);
+        client.close();
     }
     return res;
 }
@@ -58,4 +69,4 @@ var insert_1_book = async function (id, name, author, publisher, description, is
 //var d2 = new Date('01 01 1970');// Thu Jan 01 1970 00: 00: 00 GMT - 0500(Eastern Standard Time)
 // console.log(d2.toString());
 insert_1_book(91234, "Eloquent JavaScript, Third Edition", "Marijn Haverbeke", "No Starch Press", "JavaScript lies at the heart of almost every modern web application, from social apps like Twitter to browser-based game frameworks like Phaser and Babylon. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
-    [11234, -1], [new Date('20 10 1970'), null]);
+    [-1], [null]);

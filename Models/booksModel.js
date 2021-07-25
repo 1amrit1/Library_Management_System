@@ -6,6 +6,8 @@ const url = "mongodb+srv://admin:qwerty123@cluster0.h7iox.mongodb.net/myFirstDat
 const db_name = "Library_Management_System";
 const client = new MongoClient(url);
 
+var usersModel = require("./usersModel");
+
 //read one
 var get_1_book = async function (id) {
     var res;
@@ -26,8 +28,27 @@ var get_1_book = async function (id) {
     }
 
     return res;
+}
 
+var get_all_books = async function () {
+    var res;
 
+    try {
+
+        await client.connect();
+        var res = await client.db(db_name).collection("books").findOne({});
+        if (res) {
+            console.log(res);
+        } else {
+            console.log("no data of book for get_all_books method");
+        }
+    } catch {
+
+    } finally {
+        await client.close();
+    }
+
+    return res;
 }
 
 var insert_1_book = async function (id, name, author, publisher, description, issuedTo, returnBy) {
@@ -68,5 +89,50 @@ var insert_1_book = async function (id, name, author, publisher, description, is
 
 //var d2 = new Date('01 01 1970');// Thu Jan 01 1970 00: 00: 00 GMT - 0500(Eastern Standard Time)
 // console.log(d2.toString());
-insert_1_book(91234, "Eloquent JavaScript, Third Edition", "Marijn Haverbeke", "No Starch Press", "JavaScript lies at the heart of almost every modern web application, from social apps like Twitter to browser-based game frameworks like Phaser and Babylon. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
-    [-1], [null]);
+// insert_1_book(91234, "Eloquent JavaScript, Third Edition", "Marijn Haverbeke", "No Starch Press", "JavaScript lies at the heart of almost every modern web application, from social apps like Twitter to browser-based game frameworks like Phaser and Babylon. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
+//     [-1], [null]);
+
+var delete_1_book = async function (id) {
+    var AllUsers = await usersModel.getAllUsers();
+    await client.connect();
+    var book = await client.db(db_name).collection("books").findOne({ "id": id });
+    var res;
+    var itemPostn = -1;
+    if (book) {
+        var issuedToArr = book["issuedTo"];
+        for (let i = 0; i < issuedToArr.length; i++) {
+            if (issuedToArr[i] == -1) {
+                itemPostn = i;
+            }
+
+        }
+        if (itemPostn == -1) {
+            //when all the books of this id are issued!
+
+        } else {
+            //when there is one empty item
+
+            var isDuplicateId = await get_1_book(id);
+            //remove element in both the arrays in db
+
+            //get arrays to update
+            var bookIssuedToArr = isDuplicateId.issuedTo;
+            var bookReturnByArr = isDuplicateId.returnBy;
+            //remove elements to the arrays
+            bookIssuedToArr.splice(itemPostn, 1);
+            bookReturnByArr.splice(itemPostn, 1);
+            //create the object
+            var bookUptObj = { $set: { "issuedTo": bookIssuedToArr, "returnBy": bookReturnByArr } };
+            //get the book id
+            filter = { "id": isDuplicateId.id };
+            //call the updation function
+            await client.connect();
+            res = await client.db(db_name).collection("books").updateOne(filter, bookUptObj);;
+            console.log(res);
+            client.close();
+
+        }
+    }
+
+}
+//delete_1_book to test now

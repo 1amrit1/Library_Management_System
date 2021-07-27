@@ -9,7 +9,7 @@ const client = new MongoClient(url);
 var usersModel = require("./usersModel");
 
 //read one
-var get_1_book = async function (id) {
+module.exports.get_1_book = async function (id) {
     var res;
 
     try {
@@ -30,7 +30,7 @@ var get_1_book = async function (id) {
     return res;
 }
 
-var get_all_books = async function () {
+module.exports.get_all_books = async function () {
     var res;
 
     try {
@@ -51,7 +51,7 @@ var get_all_books = async function () {
     return res;
 }
 
-var insert_1_book = async function (id, name, author, publisher, description, issuedTo, returnBy) {
+module.exports.insert_1_book = async function (id, name, author, publisher, description, issuedTo, returnBy) {
     // issuedTo: array of user id(where size of array is equal to total number of
     //      that specific book in library and if that book is not issued then it will be - 1),
     // returnBy: array as the same size of issuedBy and if book is not issued then it will be null.
@@ -92,7 +92,7 @@ var insert_1_book = async function (id, name, author, publisher, description, is
 // insert_1_book(91234, "Eloquent JavaScript, Third Edition", "Marijn Haverbeke", "No Starch Press", "JavaScript lies at the heart of almost every modern web application, from social apps like Twitter to browser-based game frameworks like Phaser and Babylon. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
 //     [-1], [null]);
 
-var delete_1_book = async function (id) {
+module.exports.delete_1_book = async function (id) {
     var AllUsers = await usersModel.getAllUsers();
     await client.connect();
     var book = await client.db(db_name).collection("books").findOne({ "id": id });
@@ -133,6 +133,60 @@ var delete_1_book = async function (id) {
 
         }
     }
+    return res;
 
 }
-//delete_1_book to test now
+
+module.exports.update_book_issued = async function (userId, bookId, returnByDate, isIssueing) {
+
+    var AllUsers = await usersModel.getAllUsers();
+    await client.connect();
+    var book = await client.db(db_name).collection("books").findOne({ "id": id });
+    var res;
+    var itemPostn = -1;
+    if (book) {
+        var issuedToArr = book["issuedTo"];
+        for (let i = 0; i < issuedToArr.length; i++) {
+            if (issuedToArr[i] == -1) {
+                itemPostn = i;
+            }
+
+        }
+        if (itemPostn == -1) {
+            //when all the books of this id are issued!
+
+        } else {
+            //when there is one empty item
+
+            var isDuplicateId = await get_1_book(bookId);
+            //remove element in both the arrays in db
+
+            //get arrays to update
+            var bookIssuedToArr = isDuplicateId.issuedTo;
+            var bookReturnByArr = isDuplicateId.returnBy;
+            //remove elements to the arrays
+            if (isIssueing) {
+                //if isIssueing true then the book is being issued
+
+                bookIssuedToArr[itemPostn] = userId;
+                bookReturnByArr[itemPostn] = returnByDate;
+
+            } else {
+                bookIssuedToArr[itemPostn] = -1;
+                bookReturnByArr[itemPostn] = null;
+            }
+            //create the object
+            var bookUptObj = { $set: { "issuedTo": bookIssuedToArr, "returnBy": bookReturnByArr } };
+            //get the book id
+            filter = { "id": isDuplicateId.id };
+            //call the updation function
+            await client.connect();
+            res = await client.db(db_name).collection("books").updateOne(filter, bookUptObj);
+            console.log(res);
+            client.close();
+
+        }
+    }
+    return res;
+}
+//delete_1_book and update_book_issued to test now

@@ -42,14 +42,29 @@
 <body>
     <div
         id="menuDiv">
-        
+
+        <form
+            action="/addBook"
+            method="POST">
+            <input
+                class="inputIsAdmin"
+                value=<%=isAdmin%>
+            type="hidden"
+            name="isAdmin">
+            <input
+                type="submit"
+                value="Add a book">
+        </form>
+
+
+
         <form
             action="/allBooks">
             <input
                 class="inputID"
                 value=<%=userId%>
             type="hidden"
-            name="userName">
+            name="userId">
             <input
                 type="submit"
                 value="All Books">

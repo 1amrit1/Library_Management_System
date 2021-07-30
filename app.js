@@ -32,4 +32,7 @@ app.get(a, authController.renderLoginPage);
 app.post('/loginCheck', authController.login);
 
 //home page will be called dashboard...... so /dashboard will be the url
+app.post('/addBook', booksController.renderaddBook);
+
+
 app.post('/allBooks', booksController.renderAllBooks);

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta
+        charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Add A
+        Book</title>
+
+    <link
+        href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        rel="stylesheet"
+        id="bootstrap-css">
+    <script
+        src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="css/addBookPage.css" />
+
+    <script>
+        $(document).ready(function () {
+            //get all the input types and do the validation
+            // and prevent default in submit and submit from here after data validation
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <div
+        class="container contact-form">
+        <div
+            class="contact-image">
+            <img src="https://pngimg.com/uploads/book/book_PNG51041.png"
+                alt="rocket_contact" />
+        </div>
+        <form
+            method="post">
+            <h3>Add
+                The
+                New
+                Book
+            </h3>
+            <div
+                class="row">
+                <div
+                    class="col-md-6">
+                    <div
+                        class="form-group">
+                        <input
+                            id="txtName"
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Book Name *"
+                            value="" />
+                    </div>
+                    <div
+                        class="form-group">
+                        <input
+                            type="text"
+                            name="txtId"
+                            class="form-control"
+                            placeholder="Book ID *"
+                            value="" />
+                    </div>
+                    <div
+                        class="form-group">
+                        <input
+                            id="txtAuthor"
+                            type="text"
+                            name="author"
+                            class="form-control"
+                            placeholder="Book Author *"
+                            value="" />
+                    </div>
+                    <div
+                        class="form-group">
+                        <input
+                            id="btnSubmit"
+                            type="submit"
+                            name="btnSubmit"
+                            class="btnContact"
+                            value="Add Book" />
+                    </div>
+                </div>
+                <div
+                    class="col-md-6">
+
+
+                    <div
+                        class="form-group">
+
+                        <div>
+                            <input
+                                id="txtNumBooks"
+                                type="text"
+                                placeholder="Number Of Books *"
+                                class="form-control"
+                                name="number" />
+                        </div>
+                    </div>
+
+                    <div
+                        class="form-group">
+                        <input
+                            id="txtPublisher"
+                            type="text"
+                            name="publisher"
+                            class="form-control"
+                            placeholder="Book Publisher *"
+                            value="" />
+                    </div>
+                    <div
+                        class="form-group">
+                        <textarea
+                            id="txtDescp"
+                            name="description"
+                            class="form-control"
+                            placeholder="Book Description *"
+                            style="width: 100%; height: 90px;"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

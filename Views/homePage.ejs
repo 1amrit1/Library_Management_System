@@ -12,11 +12,78 @@
         content="width=device-width, initial-scale=1.0">
     <title>Document
     </title>
+
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#BtnAllUsers").hide();
+            $("#BtnIssueBook").hide();
+
+
+            var userId = "<%-userId%>";
+            var isAdmin = "<%-isAdmin%>";
+            console.log($(".inputID")[0].value);
+
+
+            if (isAdmin) {
+                $("#BtnAllUsers").show();
+                $("#BtnIssueBook").show();
+            } else {
+
+            }
+
+        });
+    </script>
 </head>
 
 <body>
-    <h1>Home Page
+    <div
+        id="menuDiv">
+        
+        <form
+            action="/allBooks">
+            <input
+                class="inputID"
+                value=<%=userId%>
+            type="hidden"
+            name="userName">
+            <input
+                type="submit"
+                value="All Books">
+        </form>
+        <form
+            action="/allUsers">
+            <input
+                type="submit"
+                value="All Users"
+                id="BtnAllUsers">
+        </form>
+        <form
+            action="">
+            <input
+                type="submit"
+                id="BtnIssueBook"
+                value="Issue a book">
+        </form>
+        <form
+            action="">
+            <input
+                type="submit"
+                value="Request a book issue"
+                id="BtnReqBook">
+        </form>
+
+    </div>
+    <h1>Home Page.
+        user id =
+        <%= userId
+            %>
     </h1>
 </body>
+
+
 
 </html>

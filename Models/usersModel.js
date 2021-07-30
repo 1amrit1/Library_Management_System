@@ -13,7 +13,7 @@ module.exports.getAllUsers = async function () {
     try {
 
         await client.connect();
-        res = await client.db(db_name).collection("users").findOne({});
+        res = await client.db(db_name).collection("users").find({});
         if (res) {
             console.log(res);
         } else {
@@ -30,6 +30,7 @@ module.exports.getAllUsers = async function () {
 
 //read one
 module.exports.get_1_user = async function (id) {
+    id = parseInt(id);
     var res;
 
     try {
@@ -134,7 +135,7 @@ module.exports.updateBooksIssued = async function (id, bookId, isIssueing) {
     return res;
 };
 
-model.exports.deleteUser = async function (id) {
+module.exports.deleteUser = async function (id) {
     var res;
     try {
 

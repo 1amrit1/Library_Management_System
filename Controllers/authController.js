@@ -1,25 +1,36 @@
-module.exports.login = function (req, res) {
+const usersModel = require("../Models/usersModel")
+const bcrypt = require('bcrypt');
+const url = require('url');
+
+module.exports.login = async function (req, res) {
     var userName = req.body.userName;
     var password = req.body.password;
     console.log(userName);
     console.log(password);
+    var user = await usersModel.get_1_user(userName);
+    if (user) {
 
-    // // Load hash from your password DB.
-    // bcrypt.compare(userGivenPassword, hash, function (err, result) {
-    //     // result == true
-    // });
-
-
-    if (userName == "check@email.com" && password == "checkPassword") {
-        res.render('homePage');
+        // // Load hash from your password DB.
+        console.log("pass : " + user.password);
+        bcrypt.compare(password, user['password'], function (err, result) {
+            if (result) {
+                res.render('homePage', { userId: user['id'], isAdmin: user.isAdmin });
+                // res.redirect(url.format({
+                //     pathname: "/",
+                //     query: {
+                //         username: userName
+                //     }
+                // }));
+            } else {
+                res.render('loginPage', { error: "username and/or password doesn't match!" });
+                //use ejs to send error to frntEnd and use ejs template in h1 if error is there
+            }
+            res.end;
+        });
     } else {
-        res.render('loginPage', { error: "username and/or password doesn't match!" })
-        //use ejs to send error to frntEnd and in the front end use a js fn to get the data or use ejs template in h1 if error is there
 
-        // return res.status(401).end('<h1></h1>');    
-
-        res.end;
     }
+
 }
 
 module.exports.renderLoginPage = function (req, res) {

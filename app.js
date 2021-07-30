@@ -2,6 +2,7 @@
 const express = require('express');
 var path = require('path');
 var authController = require('./Controllers/authController');
+const booksController = require('./Controllers/booksController');
 
 //creating server
 const app = express();
@@ -30,5 +31,5 @@ app.get(a, authController.renderLoginPage);
 // Access the parse results as request.body
 app.post('/loginCheck', authController.login);
 
-
 //home page will be called dashboard...... so /dashboard will be the url
+app.post('/allBooks', booksController.renderAllBooks);

@@ -39,4 +39,4 @@ app.post('/allBooks', booksController.renderAllBooks);
 
 
 app.post('/addUser', userController.renderaddUser);
-app.post('/addUserCheck',userController.addUserCheck);
+app.post('/addUserCheck', userController.addUserCheck);

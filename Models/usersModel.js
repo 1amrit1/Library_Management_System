@@ -56,6 +56,7 @@ module.exports.get_1_user = async function (id) {
 //create
 module.exports.insert_1_user = async function (id, name, isAdmin, booksIssued, password, isDuplicateId) {
     var res;
+    console.log("in insert user");
 
     if (isDuplicateId) {
         //doing nothing and res will go null.
@@ -66,14 +67,14 @@ module.exports.insert_1_user = async function (id, name, isAdmin, booksIssued, p
             passwordHash = hash;
             var userObj = { "id": id, "name": name, "isAdmin": isAdmin, "booksIssued": booksIssued, "password": passwordHash };
 
-
             await client.connect();
             res = await client.db(db_name).collection("users").insertOne(userObj);
+            console.log(res + "-----------------in insert user")
             console.log(res);
             client.close();
+            return true;
         });
     }
-    return res;
 }
 // all fns need to be with await n in async fn
 // insert_1_user(11234, "test Name", true, [91234, 91235], "password");

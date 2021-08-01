@@ -24,7 +24,7 @@
     <link
         rel="stylesheet"
         type="text/css"
-        href="css/addBookPage.css" />
+        href="css/addUserPage.css" />
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"
         integrity="sha512-Vp2UimVVK8kNOjXqqj/B0Fyo96SDPj9OCSm1vmYSrLYF3mwIOBXh/yRZDVKo8NemQn1GUjjK0vFJuCSCkYai/A=="
@@ -33,7 +33,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#addBookForm').bootstrapValidator({
+            $('#addUserForm').bootstrapValidator({
                 feedbackIcons: {
                     valid: 'glyphicon glyphicon-ok',
                     invalid: 'glyphicon glyphicon-remove',
@@ -43,38 +43,38 @@
                     id: {
                         validators: {
                             notEmpty: {
-                                message: 'The first name is required and cannot be empty'
+                                message: 'The ID is required and cannot be empty'
                             }
                         }
                     },
                     name: {
                         validators: {
                             notEmpty: {
-                                message: 'The last name is required and cannot be empty'
+                                message: 'The Name is required and cannot be empty'
                             }
                         }
                     },
-                    author: {
+                    password: {
                         validators: {
                             notEmpty: {
-                                message: 'The email address is required'
+                                message: 'The Password is required'
+                            }, identical: {
+                                field: 'confirmPassword',
+                                message: 'The password and its confirm are not the same'
                             }
                         }
                     },
-                    publisher: {
+                    confirmPassword: {
                         validators: {
                             notEmpty: {
-                                message: 'The gender is required'
+                                message: 'The Confirm Password is required'
+                            }, identical: {
+                                field: 'password',
+                                message: 'The password and its confirm are not the same'
                             }
                         }
                     },
-                    description: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The gender is required'
-                            }
-                        }
-                    }
+
                 },
                 submitHandler: function (validator, form, submitButton) {
                     var fullName = [validator.getFieldElements('firstName').val(),
@@ -96,13 +96,13 @@
         class="container contact-form">
         <div
             class="contact-image">
-            <img src="https://pngimg.com/uploads/book/book_PNG51041.png"
+            <img src="https://www.pngkit.com/png/full/126-1269287_studenticon-student-icon-blue-png.png"
                 alt="rocket_contact" />
         </div>
         <form
             method="post"
-            id="addBookForm"
-            action="/addBookCheck">
+            id="addUserForm"
+            action="">
             <input
                 class="inputID"
                 value=<%=userId%>
@@ -139,7 +139,7 @@
                             type="text"
                             name="name"
                             class="form-control"
-                            placeholder="Book Name *"
+                            placeholder="User Name *"
                             value="" />
                     </div>
                     <div
@@ -149,19 +149,10 @@
                             type="text"
                             name="id"
                             class="form-control"
-                            placeholder="Book ID *"
+                            placeholder="User ID *"
                             value="" />
                     </div>
-                    <div
-                        class="form-group">
-                        <input
-                            id="txtAuthor"
-                            type="text"
-                            name="author"
-                            class="form-control"
-                            placeholder="Book Author *"
-                            value="" />
-                    </div>
+
                     <div
                         class="form-group">
                         <input
@@ -175,60 +166,64 @@
                 <div
                     class="col-md-6">
                     <div
-                        class="form-group">
-                        <select
-                            class="form-control"
-                            id="txtNumBooks"
-                            name="NumBooks">
-                            <option
-                                value="1">
-                                Select
-                                Number
-                                of
-                                Books
-                            </option>
-                            <option
-                                value="1">
-                                1
-                            </option>
-                            <option
-                                value="2">
-                                2
-                            </option>
-                            <option
-                                value="3">
-                                3
-                            </option>
-                            <option
-                                value="4">
-                                4
-                            </option>
-                            <option
-                                value="5">
-                                5
-                            </option>
-                        </select>
+                        class="form-check radioBtn">
+                        <input
+                            class="form-check-input"
+                            type="radio"
+                            name="isAdmin"
+                            value="true"
+                            checked>
+                        <label
+                            class="form-check-label"
+                            for="exampleRadios1">
+                            New
+                            User
+                            WILL
+                            NOT
+                            be
+                            Admin
+                        </label>
+                    </div>
+                    <div
+                        class="form-check radioBtn">
+                        <input
+                            class="form-check-input"
+                            type="radio"
+                            name="isAdmin"
+                            value="false">
+                        <label
+                            class="form-check-label"
+                            for="exampleRadios2">
+                            New
+                            User
+                            WILL
+                            be
+                            Admin
+                        </label>
                     </div>
 
 
-                    <div
-                        class="form-group">
+
+
+                    <div class="form-group"
+                        style="margin-top: 0.5rem;">
                         <input
-                            id="txtPublisher"
-                            type="text"
-                            name="publisher"
+                            id="txtPassword"
+                            type="password"
+                            name="password"
                             class="form-control"
-                            placeholder="Book Publisher *"
+                            placeholder="Password *"
                             value="" />
                     </div>
-                    <div
-                        class="form-group">
-                        <textarea
-                            id="txtDescp"
-                            name="description"
+                    <div class="form-group"
+                        style="margin-top: 0.5rem;">
+                        <input
+                            id="txtConfirmPassword"
+                            type="password"
+                            name="confirmPassword"
                             class="form-control"
-                            placeholder="Book Description *"
-                            style="width: 100%; height: 90px;"></textarea>
+                            placeholder="Confirm Password *"
+                            value="" />
                     </div>
 
                 </div>

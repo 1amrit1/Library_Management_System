@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Books 📚</title>
+    <meta
+        charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <link
+        rel="stylesheet"
+        href="css/booksPage.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>All Books
+        📚</title>
 </head>
 <script
     src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
@@ -16,8 +26,8 @@
         // $("#BtnIssueBook").hide();
 
 
-        // var userId = "<%-userId%>";
-        // var isAdmin = "<%-isAdmin%>";
+        // var userId = "<%-//userId%>";
+        // var isAdmin = "<%-//isAdmin%>";
         // console.log($(".inputID")[0].value);
 
 
@@ -30,7 +40,64 @@
 
     });
 </script>
+
 <body>
-    
+    <h1>Books</h1>
+    <div
+        class="bookCard">
+        <table
+            style="width:100%">
+            <tr>
+                <th>Book
+                    Name
+                </th>
+                <th>Book
+                    ID
+                </th>
+                <th>Author
+                </th>
+                <th>Publisher
+                </th>
+                <th>Avaliabilty
+                </th>
+                <th>Description
+                </th>
+            </tr>
+
+
+            <% for(var
+                i=0;
+                i<books.length;i++)
+                {%>
+                <tr>
+                    <td>
+                        <%=(books)[i].name%>
+                    </td>
+                    <td>
+                        <%=(books)[i].id%>
+                    </td>
+                    <td>
+                        <%=(books)[i].author%>
+                    </td>
+                    <td>
+                        <%=(books)[i].publisher%>
+                    </td>
+                    <td>
+                        <%=availibleArr[i]%>
+                    </td>
+                    <td>
+                        <%=(books)[i].description%>
+                    </td>
+                </tr>
+                <% }
+                    %>
+
+        </table>
+
+
+
+    </div>
+
 </body>
+
 </html>

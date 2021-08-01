@@ -1,8 +1,9 @@
 //immporting modules
 const express = require('express');
 var path = require('path');
-var authController = require('./Controllers/authController');
+const authController = require('./Controllers/authController');
 const booksController = require('./Controllers/booksController');
+const userController = require('./Controllers/userController')
 
 //creating server
 const app = express();
@@ -33,6 +34,9 @@ app.post('/loginCheck', authController.login);
 
 //home page will be called dashboard...... so /dashboard will be the url
 app.post('/addBook', booksController.renderaddBook);
-
-
+app.post('/addBookCheck', booksController.addBookCheck);
 app.post('/allBooks', booksController.renderAllBooks);
+
+
+app.post('/addUser', userController.renderaddUser);
+app.post('/addUserCheck',userController.addUserCheck);

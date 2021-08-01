@@ -54,9 +54,9 @@ module.exports.get_1_user = async function (id) {
 }
 
 //create
-module.exports.insert_1_user = async function (id, name, isAdmin, booksIssued, password) {
+module.exports.insert_1_user = async function (id, name, isAdmin, booksIssued, password, isDuplicateId) {
     var res;
-    var isDuplicateId = await get_1_user(id);
+
     if (isDuplicateId) {
         //doing nothing and res will go null.
 

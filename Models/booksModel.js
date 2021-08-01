@@ -15,9 +15,10 @@ module.exports.get_1_book = async function (id) {
     try {
 
         await client.connect();
-        var res = await client.db(db_name).collection("books").findOne({ "id": id });
-        if (res) {
-            console.log(res);
+        var result = await client.db(db_name).collection("books").findOne({ "id": id });
+        if (result) {
+            console.log(result);
+            res = result;
         } else {
             console.log("no data of book for get_1_book method");
         }
@@ -36,9 +37,16 @@ module.exports.get_all_books = async function () {
     try {
 
         await client.connect();
-        var res = await client.db(db_name).collection("books").findOne({});
-        if (res) {
-            console.log(res);
+        var result = await client.db(db_name).collection("books").find().toArray();
+
+        if (result) {
+            // await result.forEach(console.dir);
+            // await result.forEach(function (elem) {
+            //     // res.push(elem);
+            //     console.log(elem.toString());
+            // });
+            res = result;
+
         } else {
             console.log("no data of book for get_all_books method");
         }
@@ -50,14 +58,13 @@ module.exports.get_all_books = async function () {
 
     return res;
 }
-
-module.exports.insert_1_book = async function (id, name, author, publisher, description, issuedTo, returnBy) {
+// console.log(get_all_books());
+module.exports.insert_1_book = async function (id, name, author, publisher, description, issuedTo, returnBy, isDuplicateId) {
     // issuedTo: array of user id(where size of array is equal to total number of
     //      that specific book in library and if that book is not issued then it will be - 1),
     // returnBy: array as the same size of issuedBy and if book is not issued then it will be null.
 
     var res;
-    var isDuplicateId = await get_1_book(id);
     if (isDuplicateId) {
         //add in both the arrays in db
 

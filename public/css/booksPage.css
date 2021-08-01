@@ -1,0 +1,11 @@
+*{
+    text-align: center;
+    margin: 0%;
+    padding: 0% ;
+    border: 1.rem;
+    border: solid;
+    border-color: rgb(104, 221, 250);
+    background-color: black;
+    color: white;
+    letter-spacing: 0.1rem;
+}

@@ -47,6 +47,11 @@
             action="/addBook"
             method="POST">
             <input
+                class="inputID"
+                value=<%=userId%>
+            type="hidden"
+            name="userId">
+            <input
                 class="inputIsAdmin"
                 value=<%=isAdmin%>
             type="hidden"
@@ -59,7 +64,8 @@
 
 
         <form
-            action="/allBooks">
+            action="/allBooks"
+            method="POST">
             <input
                 class="inputID"
                 value=<%=userId%>

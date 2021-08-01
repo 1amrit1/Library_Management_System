@@ -40,3 +40,6 @@ app.post('/allBooks', booksController.renderAllBooks);
 
 app.post('/addUser', userController.renderaddUser);
 app.post('/addUserCheck', userController.addUserCheck);
+app.post('/allUsers', userController.renderAllUsers);
+app.post('/profile', userController.renderProfile);
+app.post('/changePassword', userController.changePassword);

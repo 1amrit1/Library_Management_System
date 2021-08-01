@@ -93,7 +93,20 @@
                 value="All Books">
         </form>
         <form
-            action="/allUsers">
+            action="/allUsers"
+            method="POST">
+            <input
+                class="inputIsAdmin"
+                value=<%=isAdmin%>
+            type="hidden"
+            name="isAdmin">
+
+            <input
+                class="inputID"
+                value=<%=userId%>
+            type="hidden"
+            name="userId">
+
             <input
                 type="submit"
                 value="All Users"

@@ -13,8 +13,9 @@ module.exports.getAllUsers = async function () {
     try {
 
         await client.connect();
-        res = await client.db(db_name).collection("users").find({});
-        if (res) {
+        var result = await client.db(db_name).collection("users").find().toArray();
+        if (result) {
+            res = result;
             console.log(res);
         } else {
             console.log("no data");

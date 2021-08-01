@@ -63,11 +63,9 @@ module.exports.insert_1_book = async function (id, name, author, publisher, desc
     // issuedTo: array of user id(where size of array is equal to total number of
     //      that specific book in library and if that book is not issued then it will be - 1),
     // returnBy: array as the same size of issuedBy and if book is not issued then it will be null.
-
     var res;
     if (isDuplicateId) {
         //add in both the arrays in db
-
         //get arrays to update
         var bookIssuedToArr = isDuplicateId.issuedTo;
         var bookReturnByArr = isDuplicateId.returnBy;
@@ -83,7 +81,6 @@ module.exports.insert_1_book = async function (id, name, author, publisher, desc
         res = await client.db(db_name).collection("books").updateOne(filter, bookUptObj);;
         console.log(res);
         client.close();
-
     } else {
         var bookObj = { "id": id, "name": name, "author": author, "publisher": publisher, "description": description, "issuedTo": issuedTo, "returnBy": returnBy };
         await client.connect();
@@ -93,7 +90,6 @@ module.exports.insert_1_book = async function (id, name, author, publisher, desc
     }
     return res;
 }
-
 //var d2 = new Date('01 01 1970');// Thu Jan 01 1970 00: 00: 00 GMT - 0500(Eastern Standard Time)
 // console.log(d2.toString());
 // insert_1_book(91234, "Eloquent JavaScript, Third Edition", "Marijn Haverbeke", "No Starch Press", "JavaScript lies at the heart of almost every modern web application, from social apps like Twitter to browser-based game frameworks like Phaser and Babylon. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",

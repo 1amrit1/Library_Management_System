@@ -21,7 +21,8 @@ module.exports.addUserCheck = async function (req, res) {
 
     var name = req.body.name;
     var id = parseInt(req.body.id);
-    var isAdmin = Boolean(req.body.isAdmin);
+    var isAdminString = req.body.isAdmin;
+    var isAdmin = (isAdminString == 'true') ? true : false;
     var password = req.body.password;
     if (isNaN(id)) {
         console.log("in isNaN in user")
@@ -43,5 +44,45 @@ module.exports.addUserCheck = async function (req, res) {
         // }
     }
 
+}
 
+
+module.exports.renderAllUsers = async function (req, res) {
+    var isAdmin = req.body.isAdmin;
+    if (isAdmin) {
+
+        var allUsers = await userModel.getAllUsers();
+        if (allUsers) {
+            // let avaliableArr = [];
+            // for (let i = 0; i < getAllUsers.length; i++) {
+            //     var issedArr = allBooks[i].issuedTo;
+            //     var aBookAvaliabilty = 0;
+            //     for (let j = 0; j < issedArr.length; j++) {
+            //         if (issedArr[j] == -1) {
+            //             aBookAvaliabilty += 1;
+            //         }
+            //     }
+            //     avaliableArr.push(aBookAvaliabilty);
+            // }
+
+            res.render("usersPage", { "users": allUsers });
+        } else {
+            console.log("users were nt found")
+
+        }
+    } else {
+        //if the user is not an admin
+        res.render('errorPage')
+
+    }
+}
+
+module.exports.renderProfile = async function (req, res) {
+    var userID = parseInt(req.body.userId);
+    var user = await userModel.get_1_user(userID);
+    res.render('profilePage', { "user": user });
+}
+
+module.exports.changePassword = function (req, res) {
+    var password = req.body.password;
 }

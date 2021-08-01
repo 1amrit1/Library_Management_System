@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta
+        charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <link
+        rel="stylesheet"
+        href="css/booksPage.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>All Books
+        📚</title>
+</head>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        // $("#BtnAllUsers").hide();
+        // $("#BtnIssueBook").hide();
+
+
+        // var userId = "<%-//userId%>";
+        // var isAdmin = "<%-//isAdmin%>";
+        // console.log($(".inputID")[0].value);
+
+
+        // if (isAdmin) {
+        //     $("#BtnAllUsers").show();
+        //     $("#BtnIssueBook").show();
+        // } else {
+
+        // }
+
+    });
+</script>
+
+<body>
+    <h1>Users</h1>
+    <div
+        class="bookCard">
+        <table
+            style="width:100%">
+            <tr>
+                <th>User
+                    Name
+                </th>
+                <th>User
+                    ID
+                </th>
+                <th>Is
+                    User
+                    Admin
+                    ?
+                </th>
+                <th>ID
+                    of
+                    Books
+                    Issued
+                </th>
+
+                <th>
+
+                </th>
+
+            </tr>
+
+
+            <%for(var
+                i=0;i<users.length;i++){%>
+                <tr>
+                    <td>
+                        <%=(users)[i].name%>
+                    </td>
+                    <td>
+                        <%=(users)[i].id%>
+                    </td>
+                    <td>
+                        <%=(users)[i].isAdmin%>
+                    </td>
+                    <td>
+
+
+                        <%for(var
+                            j=0;j<(users)[i].booksIssued.length;j++){%>
+
+                            [
+                            <%=(users)[i].booksIssued[j]%>
+                                ]
+
+                                <%}%>
+                    </td>
+                    <td>
+                        <form
+                            action="/profile"
+                            method="post">
+
+                            <input
+                                class="inputID"
+                                value=<%=(users)[i].id%>
+                            type="hidden"
+                            name="userId">
+                            <input
+                                type="submit"
+                                value="Visit Profile">
+                        </form>
+                    </td>
+
+                </tr>
+                <%}%>
+
+        </table>
+
+
+
+    </div>
+
+</body>
+
+</html>

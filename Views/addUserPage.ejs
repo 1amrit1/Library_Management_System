@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
     <title>Add A
-        Book</title>
+        User </title>
 
     <link
         href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -75,12 +75,13 @@
                         }
                     },
 
-                },
-                submitHandler: function (validator, form, submitButton) {
-                    var fullName = [validator.getFieldElements('firstName').val(),
-                    validator.getFieldElements('lastName').val()].join(' ');
-                    alert('Hello ' + fullName);
                 }
+                // ,
+                // submitHandler: function (validator, form, submitButton) {
+                //     var fullName = [validator.getFieldElements('firstName').val(),
+                //     validator.getFieldElements('lastName').val()].join(' ');
+                //     alert('Hello ' + fullName);
+                // }
             });
             //get all the input types and do the validation
             // and prevent default in submit and submit from here after data validation
@@ -160,7 +161,7 @@
                             type="submit"
                             name="btnSubmit"
                             class="btnContact"
-                            value="Add Book" />
+                            value="Add User" />
                     </div>
                 </div>
                 <div

@@ -94,6 +94,37 @@ module.exports.changePassword = async function (req, res) {
 
         res.render('errorPage');
     }
+}
 
+module.exports.renderRemoveUser = async function (req, res) {
+    var isAdmin = (req.body.isAdmin == 'true') ? true : false;
+    var removersId = parseInt(req.body.userId);
+    console.log(removersId + " ---------------------------------user id")
+    console.log("in remove user. isAdmin : " + isAdmin)
+    if (isAdmin) {
+        //if the user is an admin
+        res.render('removeUserPage', { "isAdmin": true, "removersId": removersId });
+    } else {
+        //if the user is not an admin
+        res.render('errorPage')
 
+    }
+}
+module.exports.removeUserCheck = async function (req, res) {
+    var idToRemove = parseInt(req.body.userId);
+    var removersId = parseInt(req.body.removersId);
+    try {
+        var user = await userModel.get_1_user(idToRemove);
+        if (user.booksIssued.length > 0) {
+            res.render('<h1> Cannot remove the user as he/she has a book issued to them!</h1>');
+        } else {
+            var result = await userModel.deleteUser(idToRemove);
+            console.log(result);
+            res.render('homePage', { userId: removersId, isAdmin: true });
+
+        }
+    } catch {
+        res.render("<h1>ERROR IN REMOVING USER</h1>")
+
+    }
 }

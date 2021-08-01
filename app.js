@@ -43,3 +43,5 @@ app.post('/addUserCheck', userController.addUserCheck);
 app.post('/allUsers', userController.renderAllUsers);
 app.post('/profile', userController.renderProfile);
 app.post('/changePassword', userController.changePassword);
+app.post('/removeUser', userController.renderRemoveUser);
+app.post('/removeUserCheck', userController.removeUserCheck);

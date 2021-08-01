@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta
+        charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Document
+    </title>
+    <link
+        href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        rel="stylesheet"
+        id="bootstrap-css">
+    <script
+        src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="css/removeUserPage.css" />
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"
+        integrity="sha512-Vp2UimVVK8kNOjXqqj/B0Fyo96SDPj9OCSm1vmYSrLYF3mwIOBXh/yRZDVKo8NemQn1GUjjK0vFJuCSCkYai/A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#changePasswordForm').bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The New Password is required'
+                            }, identical: {
+                                field: 'confirmPassword',
+                                message: 'The New password and its confirm are not the same'
+                            }
+                        }
+                    },
+                    confirmPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The Confirm Password is required'
+                            }, identical: {
+                                field: 'password',
+                                message: 'The New password and its confirm are not the same'
+                            }
+                        }
+                    },
+
+                }
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <%if(isAdmin){%>
+
+        <form
+            action="/removeUserCheck"
+            id="changePasswordForm"
+            method="POST">
+            <input
+                class="inputID"
+                value=<%=removersId%>
+            type="hidden"
+            name="removersId">
+            <div class="form-group"
+                style="margin-top: 0.5rem;">
+                <input
+                    type="text"
+                    name="userId"
+                    placeholder="ID of User to Remove">
+            </div>
+            <div
+                class="form-group">
+                <input
+                    id="btnSubmit"
+                    type="submit"
+                    name="btnSubmit"
+                    class="btnContact"
+                    value="Remove User" />
+            </div>
+        </form>
+
+
+
+        <%}else{%>
+            <h1
+                style="color: red; text-align: center;">
+                ERROR
+                :
+                SOMETHING
+                WENT
+                WRONG
+            </h1>
+            <%}%>
+
+</body>
+
+</html>

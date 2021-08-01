@@ -77,6 +77,23 @@
                 type="submit"
                 value="Add a User">
         </form>
+        <form
+            action="/removeUser"
+            method="POST">
+            <input
+                class="inputID"
+                value=<%=userId%>
+            type="hidden"
+            name="userId">
+            <input
+                class="inputIsAdmin"
+                value=<%=isAdmin%>
+            type="hidden"
+            name="isAdmin">
+            <input
+                type="submit"
+                value="Remove a User">
+        </form>
 
 
 

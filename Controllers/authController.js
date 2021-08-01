@@ -28,6 +28,8 @@ module.exports.login = async function (req, res) {
             res.end;
         });
     } else {
+        res.render('loginPage', { error: "username and/or password doesn't match!" });
+        res.end;
 
     }
 

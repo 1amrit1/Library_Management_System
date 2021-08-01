@@ -106,7 +106,13 @@
         </h2>
         <form
             action="/changePassword"
-            id="changePasswordForm">
+            id="changePasswordForm"
+            method="POST">
+            <input
+                class="inputID"
+                value=<%=user.id%>
+            type="hidden"
+            name="userId">
             <div class="form-group"
                 style="margin-top: 0.5rem;">
                 <input

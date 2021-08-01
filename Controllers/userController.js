@@ -83,6 +83,17 @@ module.exports.renderProfile = async function (req, res) {
     res.render('profilePage', { "user": user });
 }
 
-module.exports.changePassword = function (req, res) {
+module.exports.changePassword = async function (req, res) {
+    var userID = parseInt(req.body.userId);
     var password = req.body.password;
+    var result = await userModel.updatePassword(userID, password);
+    try {
+
+        res.render('loginPage');
+    } catch {
+
+        res.render('errorPage');
+    }
+
+
 }

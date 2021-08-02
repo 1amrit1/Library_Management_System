@@ -53,7 +53,7 @@ module.exports.addBookCheck = async function (req, res) {
         var returnBy = [null];
         for (let i = 1; i < NumBooks; i++) {
             issuedTo.push(-1);
-            returnBy.push(-1);
+            returnBy.push(null);
         }
 
         // insert_1_book(91234, "Eloquent JavaScript, Third Edition", "Marijn Haverbeke", "No Starch Press", "JavaScript lies at the heart of almost every modern web application, from social apps like Twitter to browser-based game frameworks like Phaser and Babylon. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",

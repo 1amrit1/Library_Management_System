@@ -17,6 +17,9 @@
         src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
         crossorigin="anonymous"></script>
+    <link
+        rel="stylesheet"
+        href="css/homePage.css">
     <script>
         $(document).ready(function () {
             $("#BtnAllUsers").hide();
@@ -42,141 +45,165 @@
 <body>
     <div
         id="menuDiv">
+        <h1 id="h1Id">USER ID :
+            <%= userId %>
+        </h1>
+        <%if(isAdmin){%>
+            <form
+                action="/addBook"
+                method="POST">
+                <input
+                    class="inputID"
+                    value=<%=userId%>
+                type="hidden"
+                name="userId">
+                <input
+                    class="inputIsAdmin"
+                    value=<%=isAdmin%>
+                type="hidden"
+                name="isAdmin">
+                <input
+                    type="submit"
+                    value="Add a book">
+            </form>
+            <form
+                action="/addUser"
+                method="POST">
+                <input
+                    class="inputID"
+                    value=<%=userId%>
+                type="hidden"
+                name="userId">
+                <input
+                    class="inputIsAdmin"
+                    value=<%=isAdmin%>
+                type="hidden"
+                name="isAdmin">
+                <input
+                    type="submit"
+                    value="Add a User">
+            </form>
 
-        <form
-            action="/addBook"
-            method="POST">
-            <input
-                class="inputID"
-                value=<%=userId%>
-            type="hidden"
-            name="userId">
-            <input
-                class="inputIsAdmin"
-                value=<%=isAdmin%>
-            type="hidden"
-            name="isAdmin">
-            <input
-                type="submit"
-                value="Add a book">
-        </form>
-        <form
-            action="/addUser"
-            method="POST">
-            <input
-                class="inputID"
-                value=<%=userId%>
-            type="hidden"
-            name="userId">
-            <input
-                class="inputIsAdmin"
-                value=<%=isAdmin%>
-            type="hidden"
-            name="isAdmin">
-            <input
-                type="submit"
-                value="Add a User">
-        </form>
-        <form
-            action="/removeUser"
-            method="POST">
-            <input
-                class="inputID"
-                value=<%=userId%>
-            type="hidden"
-            name="userId">
-            <input
-                class="inputIsAdmin"
-                value=<%=isAdmin%>
-            type="hidden"
-            name="isAdmin">
-            <input
-                type="submit"
-                value="Remove a User">
-        </form>
+            <form
+                action="/removeUser"
+                method="POST">
+                <input
+                    class="inputID"
+                    value=<%=userId%>
+                type="hidden"
+                name="userId">
+                <input
+                    class="inputIsAdmin"
+                    value=<%=isAdmin%>
+                type="hidden"
+                name="isAdmin">
+                <input
+                    type="submit"
+                    value="Remove a User">
+            </form>
 
 
-        <form
-            action="/removeBook"
-            method="POST">
-            <input
-                class="inputID"
-                value=<%=userId%>
-            type="hidden"
-            name="userId">
-            <input
-                class="inputIsAdmin"
-                value=<%=isAdmin%>
-            type="hidden"
-            name="isAdmin">
-            <input
-                type="submit"
-                value="Remove a Book">
-        </form>
-        <form
-            action="/allBooks"
-            method="POST">
-            <input
-                class="inputID"
-                value=<%=userId%>
-            type="hidden"
-            name="userId">
-            <input
-                type="submit"
-                value="All Books">
-        </form>
-        <form
-            action="/allUsers"
-            method="POST">
-            <input
-                class="inputIsAdmin"
-                value=<%=isAdmin%>
-            type="hidden"
-            name="isAdmin">
+            <form
+                action="/removeBook"
+                method="POST">
+                <input
+                    class="inputID"
+                    value=<%=userId%>
+                type="hidden"
+                name="userId">
+                <input
+                    class="inputIsAdmin"
+                    value=<%=isAdmin%>
+                type="hidden"
+                name="isAdmin">
+                <input
+                    type="submit"
+                    value="Remove a Book">
+            </form>
+            <form
+                action="/allUsers"
+                method="POST">
+                <input
+                    class="inputIsAdmin"
+                    value=<%=isAdmin%>
+                type="hidden"
+                name="isAdmin">
 
-            <input
-                class="inputID"
-                value=<%=userId%>
-            type="hidden"
-            name="userId">
+                <input
+                    class="inputID"
+                    value=<%=userId%>
+                type="hidden"
+                name="userId">
 
-            <input
-                type="submit"
-                value="All Users"
-                id="BtnAllUsers">
-        </form>
-        <form
-            action="/bookTransaction" method="POST">
-            <input
-                class="inputIsAdmin"
-                value=<%=isAdmin%>
-            type="hidden"
-            name="isAdmin">
-            <input
-                class="inputID"
-                value=<%=userId%>
-            type="hidden"
-            name="userId">
+                <input
+                    type="submit"
+                    value="All Users"
+                    id="BtnAllUsers">
+            </form>
+            <form
+                action="/bookTransaction"
+                method="POST">
+                <input
+                    class="inputIsAdmin"
+                    value=<%=isAdmin%>
+                type="hidden"
+                name="isAdmin">
+                <input
+                    class="inputID"
+                    value=<%=userId%>
+                type="hidden"
+                name="userId">
 
-            <input
-                type="submit"
-                id="BtnIssueBook"
-                value="Perform a Book Transaction">
-        </form>
-        <form
-            action="">
-            <input
-                type="submit"
-                value="Request a book issue"
-                id="BtnReqBook">
-        </form>
+                <input
+                    type="submit"
+                    id="BtnIssueBook"
+                    value="Perform a Book Transaction">
+            </form>
+
+
+
+
+            <%}else{%>
+
+                <%}%>
+
+                    <form
+                        action="/allBooks"
+                        method="POST">
+                        <input
+                            class="inputID"
+                            value=<%=userId%>
+                        type="hidden"
+                        name="userId">
+                        <input
+                            type="submit"
+                            value="All Books">
+                    </form>
+                    <form
+                        action="/profile"
+                        method="POST">
+                        <input
+                            class="inputID"
+                            value=<%=userId%>
+                        type="hidden"
+                        name="userId">
+                        <input
+                            type="submit"
+                            value="View My Profile"
+                            id="BtnProfile">
+                    </form>
+                    <form
+                        action="/"
+                        method="GET">
+
+                        <input
+                            type="submit"
+                            value="Logout"
+                            id="BtnLogout">
+                    </form>
 
     </div>
-    <h1>Home Page.
-        user id =
-        <%= userId
-            %>
-    </h1>
+   
 </body>
 
 

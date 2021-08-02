@@ -4,6 +4,7 @@ var path = require('path');
 const authController = require('./Controllers/authController');
 const booksController = require('./Controllers/booksController');
 const userController = require('./Controllers/userController')
+const bookTransactionController = require('./Controllers/bookTransactionController')
 
 //creating server
 const app = express();
@@ -11,7 +12,7 @@ app.listen(3000, function () {
     console.log("server is running at port 3000");
 })
 
-//for html
+//for ejs
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
@@ -40,6 +41,7 @@ app.post('/removeBook', booksController.renderRemoveBook);
 app.post('/removeBookCheck', booksController.removeBookCheck);
 
 
+//user Controller requests
 app.post('/addUser', userController.renderaddUser);
 app.post('/addUserCheck', userController.addUserCheck);
 app.post('/allUsers', userController.renderAllUsers);
@@ -47,3 +49,7 @@ app.post('/profile', userController.renderProfile);
 app.post('/changePassword', userController.changePassword);
 app.post('/removeUser', userController.renderRemoveUser);
 app.post('/removeUserCheck', userController.removeUserCheck);
+
+//Book-Transaction Controller requests
+app.post('/bookTransaction', bookTransactionController.renderbookTransactionPage);
+app.post('/bookTransactionCheck', bookTransactionController.bookTransactionCheck);

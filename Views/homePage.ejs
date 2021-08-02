@@ -146,11 +146,22 @@
                 id="BtnAllUsers">
         </form>
         <form
-            action="">
+            action="/bookTransaction" method="POST">
+            <input
+                class="inputIsAdmin"
+                value=<%=isAdmin%>
+            type="hidden"
+            name="isAdmin">
+            <input
+                class="inputID"
+                value=<%=userId%>
+            type="hidden"
+            name="userId">
+
             <input
                 type="submit"
                 id="BtnIssueBook"
-                value="Issue a book">
+                value="Perform a Book Transaction">
         </form>
         <form
             action="">

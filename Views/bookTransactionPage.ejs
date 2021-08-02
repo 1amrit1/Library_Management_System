@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta
+        charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Document
+    </title>
+    <link
+        href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        rel="stylesheet"
+        id="bootstrap-css">
+    <script
+        src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="css/bookTransactionPage.css" />
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"
+        integrity="sha512-Vp2UimVVK8kNOjXqqj/B0Fyo96SDPj9OCSm1vmYSrLYF3mwIOBXh/yRZDVKo8NemQn1GUjjK0vFJuCSCkYai/A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#changePasswordForm').bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    issuerId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The New Password is required'
+                            }
+                        }
+                    },
+                    bookId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The Confirm Password is required'
+                            }
+                        }
+                    },
+
+                }
+                // ,
+                // submitHandler: function (validator, form, submitButton) {
+                //     var fullName = [validator.getFieldElements('firstName').val(),
+                //     validator.getFieldElements('lastName').val()].join(' ');
+                //     alert('Hello ' + fullName);
+                // }
+            });
+            //get all the input types and do the validation
+            // and prevent default in submit and submit from here after data validation
+
+        });
+    </script>
+</head>
+
+<body>
+    <form
+        action="/bookTransactionCheck"
+        id="changePasswordForm"
+        method="POST">
+        <input
+            class="inputID"
+            value=<%=userId%>
+        type="hidden"
+        name="userId">
+        <div class="form-group"
+            style="margin-top: 0.5rem;">
+            <input
+                type="text"
+                name="issuerId"
+                class="form-control"
+                placeholder="User Id *"
+                value="" />
+        </div>
+        <div class="form-group"
+            style="margin-top: 0.5rem;">
+            <input
+                type="text"
+                name="bookId"
+                class="form-control"
+                placeholder="Book Id *"
+                value="" />
+        </div>
+        <div
+            class="form-check radioBtn">
+            <input
+                class="form-check-input"
+                type="radio"
+                name="transactionType"
+                value="issue"
+                checked>
+            <label
+                class="form-check-label"
+                for="exampleRadios1">
+                Issue
+                Book
+            </label>
+        </div>
+        <div
+            class="form-check radioBtn">
+            <input
+                class="form-check-input"
+                type="radio"
+                name="transactionType"
+                value="return">
+            <label
+                class="form-check-label"
+                for="exampleRadios2">
+                Deposit
+                Book
+            </label>
+        </div>
+        <div
+            class="form-group">
+            <input
+                id="btnSubmit"
+                type="submit"
+                name="btnSubmit"
+                class="btnContact"
+                value="Perform Book Transaction" />
+        </div>
+    </form>
+
+
+
+
+</body>
+
+</html>

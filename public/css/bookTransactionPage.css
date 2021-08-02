@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(44, 44, 44);
+    color: white;
+}
+form{
+    margin-top: 10%;
+    margin-left: 30%;
+    width: 40%;
+    background-color: black;
+    padding: 5rem;
+    border-radius: 15%;
+    border: 0.5rem solid white;
+}

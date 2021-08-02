@@ -146,7 +146,7 @@ module.exports.update_book_issued = async function (userId, bookId, returnByDate
 
     var AllUsers = await usersModel.getAllUsers();
     await client.connect();
-    var book = await client.db(db_name).collection("books").findOne({ "id": id });
+    var book = await client.db(db_name).collection("books").findOne({ "id": bookId });
     var res;
     var itemPostn = -1;
     if (book) {
@@ -162,8 +162,9 @@ module.exports.update_book_issued = async function (userId, bookId, returnByDate
 
         } else {
             //when there is one empty item
+            var dupRes = await client.db(db_name).collection("books").findOne({ "id": bookId });
 
-            var isDuplicateId = await get_1_book(bookId);
+            var isDuplicateId = dupRes;
             //remove element in both the arrays in db
 
             //get arrays to update

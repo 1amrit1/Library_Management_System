@@ -96,7 +96,23 @@
         </form>
 
 
-
+        <form
+            action="/removeBook"
+            method="POST">
+            <input
+                class="inputID"
+                value=<%=userId%>
+            type="hidden"
+            name="userId">
+            <input
+                class="inputIsAdmin"
+                value=<%=isAdmin%>
+            type="hidden"
+            name="isAdmin">
+            <input
+                type="submit"
+                value="Remove a Book">
+        </form>
         <form
             action="/allBooks"
             method="POST">

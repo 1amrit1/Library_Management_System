@@ -69,6 +69,45 @@ module.exports.addBookCheck = async function (req, res) {
             //send back to add page with msg that something went wrong.
         }
     }
+}
 
+module.exports.renderRemoveBook = async function (req, res) {
+    var isAdmin = (req.body.isAdmin == 'true') ? true : false;
+    var removersId = parseInt(req.body.userId);
+    console.log(removersId + " ---------------------------------user id in remove book render")
+    console.log("in remove user. isAdmin : " + isAdmin)
+    if (isAdmin) {
+        //if the user is an admin
+        res.render('removeBookPage', { "isAdmin": true, "removersId": removersId });
+    } else {
+        //if the user is not an admin
+        res.render('errorPage')
 
+    }
+}
+module.exports.removeBookCheck = async function (req, res) {
+    var idToRemove = parseInt(req.body.bookId);
+    var removersId = parseInt(req.body.removersId);
+    try {
+        var book = await booksModel.get_1_book(idToRemove);
+        var bookPosInArr = -1;
+        for (let i = 0; i < book.issuedTo.length; i++) {
+            if (parseInt(book.issuedTo[i]) == -1) {
+                bookPosInArr = i;
+                break;
+            }
+        }
+        if (bookPosInArr < 0) {
+            res.render('errorPage');
+        } else {
+            var result = await booksModel.delete_1_book(idToRemove);
+            console.log(result);
+            res.render('homePage', { userId: removersId, isAdmin: true });
+
+        }
+    } catch (err) {
+        res.render('errorPage');
+        console.log(err);
+
+    }
 }

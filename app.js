@@ -36,6 +36,8 @@ app.post('/loginCheck', authController.login);
 app.post('/addBook', booksController.renderaddBook);
 app.post('/addBookCheck', booksController.addBookCheck);
 app.post('/allBooks', booksController.renderAllBooks);
+app.post('/removeBook', booksController.renderRemoveBook);
+app.post('/removeBookCheck', booksController.removeBookCheck);
 
 
 app.post('/addUser', userController.renderaddUser);

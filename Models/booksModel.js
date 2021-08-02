@@ -113,9 +113,11 @@ module.exports.delete_1_book = async function (id) {
             //when all the books of this id are issued!
 
         } else {
-            //when there is one empty item
+            //when there is one empty item     
+            var result = await client.db(db_name).collection("books").findOne({ "id": id });
 
-            var isDuplicateId = await get_1_book(id);
+
+            var isDuplicateId = result;
             //remove element in both the arrays in db
 
             //get arrays to update

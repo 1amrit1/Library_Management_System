@@ -23,7 +23,7 @@
     <link
         rel="stylesheet"
         type="text/css"
-        href="css/removeUserPage.css" />
+        href="css/removeBookPage.css" />
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"
         integrity="sha512-Vp2UimVVK8kNOjXqqj/B0Fyo96SDPj9OCSm1vmYSrLYF3mwIOBXh/yRZDVKo8NemQn1GUjjK0vFJuCSCkYai/A=="
@@ -39,14 +39,26 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    userId: {
+                    password: {
                         validators: {
                             notEmpty: {
-                                message: 'The User ID is required'
+                                message: 'The New Password is required'
+                            }, identical: {
+                                field: 'confirmPassword',
+                                message: 'The New password and its confirm are not the same'
                             }
                         }
-                    }
-
+                    },
+                    confirmPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The Confirm Password is required'
+                            }, identical: {
+                                field: 'password',
+                                message: 'The New password and its confirm are not the same'
+                            }
+                        }
+                    },
 
                 }
             });
@@ -59,7 +71,7 @@
     <%if(isAdmin){%>
 
         <form
-            action="/removeUserCheck"
+            action="/removeBookCheck"
             id="changePasswordForm"
             method="POST">
             <input
@@ -71,8 +83,8 @@
                 style="margin-top: 0.5rem;">
                 <input
                     type="text"
-                    name="userId"
-                    placeholder="ID of User to Remove">
+                    name="bookId"
+                    placeholder="ID of Book to Remove">
             </div>
             <div
                 class="form-group">
@@ -81,7 +93,7 @@
                     type="submit"
                     name="btnSubmit"
                     class="btnContact"
-                    value="Remove User" />
+                    value="Remove Book" />
             </div>
         </form>
 
